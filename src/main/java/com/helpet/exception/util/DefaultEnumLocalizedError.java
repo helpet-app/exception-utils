@@ -7,7 +7,7 @@ public interface DefaultEnumLocalizedError extends LocalizedError {
         return this.name();
     }
 
-    default String getExceptionKey() {
+    default String getTitleKey() {
         return this.getClass()
                    .getSimpleName()
                    .replace("LocalizedError", "")
