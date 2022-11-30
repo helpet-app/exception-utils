@@ -3,7 +3,9 @@ package com.helpet.exception.util;
 public interface LocalizedError {
     String getCode();
 
-    String getTitleKey();
+    default String getErrorKeyPrefix() {
+        return "errors";
+    }
 
-    String getReasonKey();
+    String getErrorKey();
 }

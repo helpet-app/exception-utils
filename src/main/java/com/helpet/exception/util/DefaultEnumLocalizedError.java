@@ -7,15 +7,7 @@ public interface DefaultEnumLocalizedError extends LocalizedError {
         return this.name();
     }
 
-    default String getTitleKey() {
-        return this.getClass()
-                   .getSimpleName()
-                   .replace("LocalizedError", "")
-                   .replaceAll("([a-z0-9])([A-Z])", "$1-$2")
-                   .toLowerCase();
-    }
-
-    default String getReasonKey() {
+    default String getErrorKey() {
         return this.name().toLowerCase().replace("_", "-");
     }
 }
