@@ -7,17 +7,20 @@ import lombok.Getter;
 public abstract class LocalizedException extends RuntimeException {
     protected final String code;
 
-    protected final String titleKey;
+    protected final String messageKey;
 
-    protected final String reasonKey;
-
-    protected LocalizedException(String code, String titleKey, String reasonKey) {
-        this.code = code;
-        this.titleKey = String.join(".", "exceptions", "titles", titleKey);
-        this.reasonKey = String.join(".", "exceptions", "reasons", reasonKey);
+    protected LocalizedException(LocalizedError localizedError, String debugMessage) {
+        super(debugMessage);
+        this.code = localizedError.getCode();
+        this.messageKey = buildMessageKey(localizedError.getErrorKeyPrefix(), localizedError.getErrorKey());
     }
 
     protected LocalizedException(LocalizedError localizedError) {
-        this(localizedError.getCode(), localizedError.getTitleKey(), localizedError.getReasonKey());
+        this.code = localizedError.getCode();
+        this.messageKey = buildMessageKey(localizedError.getErrorKeyPrefix(), localizedError.getErrorKey());
+    }
+
+    private String buildMessageKey(String errorPrefixKey, String errorKey) {
+        return errorPrefixKey + "." + errorKey;
     }
 }

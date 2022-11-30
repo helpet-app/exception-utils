@@ -3,8 +3,8 @@ package com.helpet.exception;
 import com.helpet.exception.util.LocalizedError;
 
 public class ConflictLocalizedException extends LocalizedException {
-    public ConflictLocalizedException(String code, String titleKey, String reasonKey) {
-        super(code, titleKey, reasonKey);
+    public ConflictLocalizedException(LocalizedError localizedError, String debugMessage) {
+        super(localizedError, debugMessage);
     }
 
     public ConflictLocalizedException(LocalizedError localizedError) {
